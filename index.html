@@ -201,15 +201,19 @@
           <canvas id="scratch"></canvas>
         </div>
       </div>
+      <!-- Boton de reinicio -->
+    <!--
       <div class="actions">
         <button class="btn-reset" id="btnReset">Reiniciar raspadita</button>
-      </div>
+      </div>  -->
     </div>
   </div>
   <script>
     const canvas = document.getElementById('scratch');
     const ctx = canvas.getContext('2d');
-    const resetBtn = document.getElementById('btnReset');
+    // Nueva linea de codigo para matar el boton de reinicio 
+    document.getElementById('btnReset')?.addEventListener('click', paintCover);
+    // const resetBtn = document.getElementById('btnReset'); // linea vieja
     let isDrawing = false, last = null;
 
     function fitCanvas() {
@@ -254,7 +258,9 @@
     canvas.addEventListener('pointermove', e => { if(isDrawing) scratch(e.clientX, e.clientY); });
     canvas.addEventListener('pointerup', () => { isDrawing = false; last = null; });
 
-    resetBtn.addEventListener('click', paintCover);
+    // resetBtn.addEventListener('click', paintCover); linea vieja no borrar
+   document.getElementById('btnReset')?.addEventListener('click', paintCover);
+
     window.addEventListener('resize', fitCanvas);
     fitCanvas();
   </script>
